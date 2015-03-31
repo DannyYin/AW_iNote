@@ -1,32 +1,33 @@
 ### General 
 
-Command + = : increase font size
-Command + - : decrease font size
+<kbd>Command</kbd> + <kbd>=</kbd> : increase font size
+
+<kbd>Command</kbd> + <kbd>-</kbd> : decrease font size
 
 ### Column Selection
 
 *Using the Mouse*
 
-Option + Left Mouse : 
+<kbd>Option</kbd> + Left Mouse : 
 
 *Using the Keyboard*
 
-Ctrl + Shift + Up : Add previous line
-Ctrl + Shift + Down : Add next line
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Up</kbd> : Add previous line
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Down</kbd> : Add next line
 
 ### Multiple Selection with the Keyboard
 
 *Splitting the Selection into Lines*
 
-Command + Shift + L
+<kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 
 *Quick Add Next*
 
-Command + D : Add next selected word 
+<kbd>Command</kbd> + <kbd>D</kbd> : Add next selected word 
 
 *Find All*
 
-Ctrl + Command + G 
+<kbd>Ctrl</kbd> + <kbd>Command</kbd> + <kbd>G</kbd> 
 
 *Single Selection*
 
@@ -36,7 +37,7 @@ Escape : To go from multiple selections to a single selection.
 
 *Manually Showing Completions*
 
-Ctrl + Sapce : Show the completion popup.
+<kbd>Ctrl</kbd> + <kbd>Sapce</kbd> : Show the completion popup.
 
 *Commit on Tab*
 
@@ -62,15 +63,15 @@ Remove "Vintage" inside `"ignored_packages": ["Vintage"]`.
 
 ### Command Pelette
 
-Command + Shift + P : Search everything you need there.
+<kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Search everything you need there.
 
 ### Goto Anything...
 
-Command + P : Type the file name to show the target file.
+<kbd>Command</kbd> + <kbd>P</kbd> : Type the file name to show the target file.
 
 ### Goto Symbol...
 
-Command + R : Find class, function. You can see all available symbol 
+<kbd>Command</kbd> + <kbd>R</kbd> : Find class, function. You can see all available symbol 
 there.
 
 Combine Goto Anything with Goto Symbol with Command + P with @ 
@@ -120,7 +121,7 @@ Important).
 
 ### Create File Quickly - AdvancedNewFile
 
-Command + Alt + N : Create new file.
+<kbd>Command</kbd> + <kbd>Alt</kbd> + <kbd>N</kbd> : Create new file.
 
 Read more in `README.md`
 
