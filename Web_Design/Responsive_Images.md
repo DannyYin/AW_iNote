@@ -11,7 +11,8 @@ The goal is to produce the **highest** quality images with the **fewest bytes** 
 **NOTE**: Most of the bytes cross the web are for video.
 
 > Create a product, don't re-imagine one for small screens. Greate mobile products are created, never ported.
-> -- Brian Fling
+>
+> -- <cite>Brian Fling</cite>
 
 ### Introducing Remote Debuging
 
@@ -19,7 +20,9 @@ The goal is to produce the **highest** quality images with the **fewest bytes** 
 
 **Addtional Note for Chrome Canary**: 
 
-Chrome Canary is the developer version of Chrome. It looks and acts like the regular Chrome browser, but it includes new and experimental features that haven't been released yet. We recommend analyzing websites with Canary to take advantage of the latest tech. However, be warned that Canary isn't guaranteed to be stable, so expect crashes and occasional bugs.
+Chrome Canary is the developer version of Chrome.
+It looks and acts like the regular Chrome browser, but it includes new and experimental features that haven't been released yet.
+It is recommended analyzing websites with Canary to take advantage of the latest tech. 
 
 [iOS Webkit Debug Proxy](https://github.com/google/ios-webkit-debug-proxy)
 
@@ -28,3 +31,4 @@ Chrome Canary is the developer version of Chrome. It looks and acts like the reg
 ## Images with Markup
 
 ## Full Responsiveness
+
