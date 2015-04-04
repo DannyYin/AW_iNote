@@ -13,6 +13,7 @@
 ### Web Design
 
 - [Responsive Web Design](Web_Design/Responsive_Web.md)
+- [Responsive Images](Web_Design/Responsive_Images.md)
 
 ### Languages
 
