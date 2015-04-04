@@ -4,7 +4,7 @@
 
 ### Version Control
 
-- [Git](Version_Control/Git/Git.md)
+- [Git (Chinese)](Version_Control/Git.md)
 
 ### Editor
 
