@@ -38,13 +38,16 @@ button {
 
 ### Mobile First
 
-Priorities content from mobile to desktop and even TV, hence the key content is always there. Also code from small to large also good. The most important reason to start from small is **performance**, thinking performance from the beginning.
+Priorities content from mobile to desktop and even TV, hence the key content is always there.
+Also code from small to large also good.
+The most important reason to start from small is **performance**, thinking performance from the beginning.
 
 ## Building Up
 
 Introduce Design Pattern.
 
-Media Query to change the style based on screen size. Most use properties are `min-width` and `min-height`.
+Media Query to change the style based on screen size.
+Most use properties are `min-width` and `min-height`.
 
 **Type One Media Query**
 
@@ -71,7 +74,8 @@ Use the content to find the best **Breakpoint**.
 
 ### Introduce Flexbox 
 
-The Flexbox Layout (Flexible Box) module (currently a W3C Last Call Working Draft) aims at providing a more efficient way to lay out, align and distribute space among items in a container, even when their size is unknown and/or dynamic (thus the word "flex").
+The Flexbox Layout (Flexible Box) module (currently a W3C Last Call Working Draft) aims at providing a more efficient way to lay out,
+align and distribute space among items in a container, even when their size is unknown and/or dynamic (thus the word "flex").
 
 ## Common Responsive Patterns
 
