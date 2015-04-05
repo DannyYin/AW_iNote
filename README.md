@@ -17,6 +17,4 @@
 
 ### Languages
 
-#### Swift
-
-...
+- [JavaScript](Language/JavaScript.md)
