@@ -154,3 +154,19 @@ for(country in countries) {
 }
 ```
 
+## Functions
+
+```JavaScript
+var myFunc = function(param1, param2) {
+	// code goes here
+	return returnValue;
+}
+
+function myFunc(param1, param2) {
+	// code goes here
+	return returnvalue;
+}
+```
+
+NOTE: These are equivalent. Pretty much everything is an **Object** in JavaScript.
+
