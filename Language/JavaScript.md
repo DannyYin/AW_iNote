@@ -1,5 +1,7 @@
 # JavaScript
 
+**JavaScript** was created in May 1995 by Brendan Eich. The original name was **Mocha**, a name chosen by Marc Andreessen. 
+
 ## Getting Up and Running
 
 ```JavaScript
@@ -60,6 +62,8 @@ NOTE: Length of array is **NOT** equal to number of elements inside.
 ### Object
 
 Object contains information and tools. There are no class in **JavaScript**. 
+
+Methods are properties that contains functions.
 
 ```JavaScript
 skills = ['awesomeness', 'programming', 'JavaScript'];
@@ -156,6 +160,10 @@ for(country in countries) {
 
 ## Functions
 
+Funcitons in JavaScript are first class objects (means the language supports passing functions as arguments to other functions, returning them as the values from other functions, and assigning them to variables or storing them in data structures.). 
+
+Being able to pass logic around an application in the form of a function means it’s possible to move a lot of repetitive code into a library function. It makes it easier to separate the unique pieces of logic from the generally useful logic.
+
 ```JavaScript
 var myFunc = function(param1, param2) {
 	// code goes here
@@ -169,4 +177,136 @@ function myFunc(param1, param2) {
 ```
 
 NOTE: These are equivalent. Pretty much everything is an **Object** in JavaScript.
+
+## Scope
+
+JavaScript ahs a few concepts of "scope". [Origin Post](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
+
+## What is Scope?
+
+Scope refers to the current conteact of your code in JavaScript.
+It can be globally or locally defined.
+Understanding scope is key to writing bulletproof code and being a better developer.
+
+### What is Global Scope?
+
+Before you write a line of JavaScript, you are in the `Global Scope`.
+
+We are accessing jQuery in global scope, we can refer to this acess as the `namespace`.
+The namespace is an interchangable word for scope, but usually refers to the highest level scope.
+
+### What is Local Scope?
+
+A local scope refers to any scode defined past the global scope.
+There is one global scope and each function defined has its own local scode.
+
+```JavaScript
+// Scope A: Global scope here
+var myFunc = function() {
+	// Scope B: Local scope here
+}
+```
+
+Any locally scoped items are not visible in the global scope - unless exposed.
+
+### Function Scope
+
+All scopes in JavaScript are created with `Function Scode` only.
+They are not created by `for` or `while` loops or expression statements.
+**New function is new scope**, that is the rule.
+
+```JavaScript
+// Scope A
+function(){
+	// Scope B
+	function() {
+		// Scope C
+	}
+}
+```
+
+### Lexical Scope
+
+Function with another function, the inner function has acesss to the scope in the outer function.
+This is cannled Lexical Scope or Closure - referred to as Static Scope.
+
+```JavaScript
+//Scope A
+var myFunc = function() {
+	// Scope B
+	var name = 'Xinyang';
+	var myOtherFunc = function(){
+		// Scope C: `name` is accessible here
+	}
+}
+```
+
+Lexical scope is easy to work with, any vairbales/objects/functions defined in it's parent scode are available in the scope chain.
+The **ONLY** important thing to remember is that Lexical scope does not work backwards.
+
+### Scope Chain
+
+Scope chains establish the scope for a given function. 
+Each functino defined has its own nested scope and any function defined within another function has a local scope which is linked to the outer function - this link is called the **chain**.
+
+When resolving a variable, JavaScript always starts at the innermost scope and searchs outwards until it finds the variable/object/function it was looking for.
+
+### Closures
+
+Closure ties in very closely with Lexical scope.
+
+```JavaScript
+var sayHello = function(name) {
+	var text = 'hello, ' + name;
+	return function(){
+		console.log(text);
+	}
+}
+
+sayHello('Xinyang'); // nothing happens
+
+var helloXinyang = sayHello('Xinyang');
+helloXinyang(); // will call the closure and log 'hello, Xinyang'
+
+// Alternatively
+
+sayHello('Xinyang')(); // calls the returned function without arg 
+```
+
+### Scope and 'this'
+
+Each scope binds a different value of `this` depending on how the function is invoked.
+By default `this` refers to the outer most global object, the `window`.
+
+```JavaScript
+var myFunction = function () {
+  console.log(this); // this = global, [object Window]
+};
+myFunction();
+
+var myObject = {};
+myObject.myMethod = function () {
+  console.log(this); // this = Object { myObject }
+};
+
+var nav = document.querySelector('.nav'); // <nav class="nav">
+var toggleNav = function () {
+  console.log(this); // this = <nav> element
+};
+nav.addEventListener('click', toggleNav, false);
+```
+
+There are problems that we run into when dealing with `this` value. 
+even inside the same function the scope can be changed and the `this`value can be changed.
+
+```JavaScript
+var nav = document.querySelector('.nav'); // <nav class="nav">
+var toggleNav = function () {
+  console.log(this); // <nav> element
+  setTimeout(function () {
+    console.log(this); // [object Window]
+  }, 1000);
+};
+nav.addEventListener('click', toggleNav, false);
+```
 
