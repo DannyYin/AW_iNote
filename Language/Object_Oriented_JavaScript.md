@@ -1,0 +1,51 @@
+# Object Oriented JavaScript
+
+## Scopes
+
+### Lexical Scope
+
+Global Scope can be shared between files. 
+A variable without `var` infront of declearation will automatically assign to the **Global Scope**, therefore avoid doing this to prevent potential problem.
+
+In JavaScript **only** function create scope, loop and expression statements do not create scope.
+
+### Execution Contexts
+
+When program runs it builds up storage systems for holding the variables and their values.
+These *in memory scope* structures are called execution contexts.
+
+#### Execution Contexts vs. Lexical Scopes
+
+**Execution Contexts** (in memory scopes), they are built as they are running. 
+A new execution context should be created every time you call a function, therefore, each lexical scope there may be many execution scopes created or none (Depend on the number of function has been called).
+
+![Execution Context Explanation](http://dl.dropbox.com/u/1725146/Screen%20Shot%202015-04-12%20at%207.08.26%20PM.png)
+
+## Closures
+
+Function has access to all the variables fomr the scopes that surround it. 
+**Closures** is any function that remains available after those outer scopes have returned.
+
+A new context always gets created in the same context as its function was defined within.
+
+![Closures Explanation](http://dl.dropbox.com/u/1725146/Screen%20Shot%202015-04-12%20at%207.23.01%20PM.png)
+
+## this Keyword
+
+`this` is an identifier to get the value bound to it, it gets bound to the correct object automatically.
+
+`this` is easily the most widely misunderstood aspect of the languages.
+Two major differences between a regular parameter and `this`.
+
+- You do not need pick name for `this`
+- Value binding is different. (5 ways)
+
+### What is 'this' not bound to?
+
+![this not bound to](http://dl.dropbox.com/u/1725146/Screen%20Shot%202015-04-12%20at%207.34.09%20PM.png)
+
+### What is 'this' bound to?
+
+...the object found to the left of the dot where the containing function is called.
+
+Input parameters to a function only have bindings when that function is actually running.
