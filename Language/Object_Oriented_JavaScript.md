@@ -35,7 +35,7 @@ A new context always gets created in the same context as its function was define
 `this` is an identifier to get the value bound to it, it gets bound to the correct object automatically.
 
 `this` is easily the most widely misunderstood aspect of the languages.
-Two major differences between a regular parameter and `this`.
+Two major differences between a regular positional parameter and `this`.
 
 - You do not need pick name for `this`
 - Value binding is different. (5 ways)
@@ -49,3 +49,44 @@ Two major differences between a regular parameter and `this`.
 ...the object found to the left of the dot where the containing function is called.
 
 Input parameters to a function only have bindings when that function is actually running.
+The keyword `this` behaves like a parameter in most of the important ways.
+
+NOTE: The default value is <global>. When no value pass to the method invocation `undefined` is bound to the variable.
+
+![this bounding](http://dl.dropbox.com/u/1725146/Screen%20Shot%202015-04-12%20at%209.00.33%20PM.png)
+
+## Prototype Chains
+
+It is mechanism to make object resemble to other object. 
+
+```JavaScript
+var gold = {a: 1};
+console.log(gold.a); // 1
+console.log(gold.z); // undefined
+
+// Simple One-time Copy
+var blue = extend({}, gold); 
+blue.b = 2;
+console.log(blue.a); // 1
+console.log(blue.b); // 2
+console.log(blue.z); // undefined
+
+// Set Up Prototype Chain
+var rose = Object.create(gold);
+rose.b = 2;
+console.log(rose.a); // 1
+console.log(rose.b); // 2
+console.log(rose.z); // undefined
+
+gold.z = 3;
+console.log(blue.z); // undefined
+console.log(rose.z); // 3
+```
+
+NOTE: There are special object, like `Array`. `Array Object` -> `Array Prototype` -> `Object Prototype`.
+
+## Object Decorator Pattern
+
+When writing software, code reuse is the practice of writing generalized code that can be relied upon to address a variety of similar goals.
+Similar code should be factor out to reusable library code.
+
