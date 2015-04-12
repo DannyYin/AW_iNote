@@ -14,6 +14,7 @@
 
 - [Responsive Web Design](Web_Design/Responsive_Web.md)
 - [Responsive Images](Web_Design/Responsive_Images.md)
+- [GitHub Pages](Web_Design/GitHub_Page.md)
 
 ### Languages
 
