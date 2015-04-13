@@ -18,4 +18,5 @@
 
 ### Languages
 
-- [JavaScript](Language/JavaScript.md)
+- [JavaScript - Basic](Language/JavaScript.md)
+- [JavaScript - Object-Oriented](Language/Object_Oriented_JavaScript.md)
