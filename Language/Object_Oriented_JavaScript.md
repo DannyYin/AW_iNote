@@ -178,3 +178,61 @@ NOTE: There are special object, like `Array`. `Array Object` -> `Array Prototype
 When writing software, code reuse is the practice of writing generalized code that can be relied upon to address a variety of similar goals.
 Similar code should be factor out to reusable library code.
 
+**Sample Code**
+```JavaScript
+/*
+ * Version 1.0
+ */ 
+var amy = {
+	loc: 1
+};
+var ben = {
+	loc: 9
+};
+
+amy.loc++;
+console.log(amy.loc);
+ben.loc++;
+console.log(ben.loc);
+
+/*
+ * Version 2.0
+ */
+
+// Create Reuse Library
+var move = function(car){
+	car.loc += 1;
+};
+
+move(amy);
+console.log(amy.loc);
+move(ben);
+console.log(ben.loc);
+
+/*
+ * Version 3.0
+ */
+
+var carlike = function(obj, loc) {
+	obj.loc = loc;
+	return obj;
+}
+
+var amy = carlike({}, 1);
+var ben = carlike({}, 9);
+move(amy);
+move(ben);
+
+/*
+ * Version 4.0
+ */
+var carlike = function(obj, loc) {
+  obj.loc = loc;
+  obj.move = move;
+  return obj;
+};
+
+var move = function(){
+	this.loc += 1; // 'this' automatically bound to caller obj
+};
+```
