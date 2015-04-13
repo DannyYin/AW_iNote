@@ -44,16 +44,104 @@ Two major differences between a regular positional parameter and `this`.
 
 ![this not bound to](http://dl.dropbox.com/u/1725146/Screen%20Shot%202015-04-12%20at%207.34.09%20PM.png)
 
+**Sample Code**:
+
+```JavaScript
+var fn = function(a, b) {
+	log(this); 
+	// NOT bound to the function object this appears within
+}
+// NOT bound to an new instance of the function 'this' appears within
+
+var ob1 = {method: fn};
+// NOT bound to an object that happens to have that function as 
+// a property
+
+var ob2 = {
+	fn: function(a, b) {
+		log(this);
+	}
+};
+// NOT bound to the object created by the literal `this` appear
+// within
+
+ob2.fn(3, 4);
+// NOTE bound to an "execution context" or "scope" of that function
+// call
+```
+
 ### What is 'this' bound to?
 
 ...the object found to the left of the dot where the containing function is called.
 
+```JavaScript
+// BOUND to the object found to the left of the dot where the 
+// containing function is called. 'ob2' in this case.
+ob2.fn(3, 4);
+```
+
 Input parameters to a function only have bindings when that function is actually running.
 The keyword `this` behaves like a parameter in most of the important ways.
 
-NOTE: The default value is <global>. When no value pass to the method invocation `undefined` is bound to the variable.
+NOTE: The **default** value is <global>. When no value pass to the method invocation `undefined` is bound to the variable.
 
 ![this bounding](http://dl.dropbox.com/u/1725146/Screen%20Shot%202015-04-12%20at%209.00.33%20PM.png)
+
+#### Predicting Parameter Output Sample
+
+```JavaScript
+var fn = function(one, two) {
+	log(this, one, two);
+}
+var r = {}, g = {}, b = {};
+
+fn(g, b);
+// <global>, g, b
+// 'g' bind to 'one' and 'b' bind to 'two'
+// but NOT ture for every function invocation
+
+r.method = fn;
+
+r.method(g, b);
+// r, g, b
+// focal object is the one on the left side of dot
+// same to the left of the bracket
+// r['method'](g, b);
+
+fn.call(r, g, b);
+// r, g, b
+// using function '.call' method to override the default binding
+// to global and override the left of the dot rule
+
+r.method.call(y, g, b);
+// y, g, b
+
+setTimeout(fn, 1000);
+// <global>, undefined, undefined
+
+var setTimeout = function(callback, ms) {
+	waitSomeTime(ms);
+	callback(); // NO parameter at all while calling
+};
+
+setTimeout(r.method, 1000);
+// <global> , undefined, undefined
+// the argument passed in is a function object 
+// nothing to do with 'r' object
+
+setTimeout(function(){
+	r.method()
+	// r, undefined, undefined
+}, 1000);
+
+log(this);
+// <global>
+log(one);
+// error
+
+new r.method(g, b);
+// 'a brand new object', g, b
+```
 
 ## Prototype Chains
 
