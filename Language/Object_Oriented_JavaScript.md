@@ -173,10 +173,13 @@ console.log(rose.z); // 3
 
 NOTE: There are special object, like `Array`. `Array Object` -> `Array Prototype` -> `Object Prototype`.
 
-## Object Decorator Pattern
+## Object Decorator Pattern (修饰模式)
+
+Decorator accept an **object** as input.
 
 When writing software, code reuse is the practice of writing generalized code that can be relied upon to address a variety of similar goals.
 Similar code should be factor out to reusable library code.
+[中文 Wikipedia](http://zh.wikipedia.org/wiki/%E4%BF%AE%E9%A5%B0%E6%A8%A1%E5%BC%8F)
 
 **Sample Code**
 ```JavaScript
@@ -235,4 +238,59 @@ var carlike = function(obj, loc) {
 var move = function(){
 	this.loc += 1; // 'this' automatically bound to caller obj
 };
+var sheldon = carlike({}, 3);
+sheldon.move(); 
+// -> this.loc += 1 , this is bound to sheldon 
+// its bound at runtime
+
+/*
+ * Version 5.0
+ */
+
+var carlike = function(obj, loc) {
+  obj.loc = loc;
+  obj.move = function(){
+  	this.loc++;
+  };
+  return obj;
+};
+
+/*
+ * Version 6.0
+ */
+
+var carlike = function(obj, loc) {
+  obj.loc = loc;
+  obj.move = function() {
+      obj.loc++;
+  };
+  return obj;
+};
+```
+
+NOTE: `===` asks about object identity, NOT merely value equality.
+
+## Functional Classes
+
+Class is a powerful form of functions that can be used to manufacture fleets of similar objects, a construct that is capable of building a fleet of similar objects that all conform to the same interface.
+
+Function produce objects called *Constructor functions*.
+
+NOTE: Name class with capitalised noun, like proper noun for a category. 
+Short story, the **class** is the **category** and the **constructor** is the function that produce a new instance of that class, the process is known as **Instantiating**.
+This is an example of the **Functional Class Pattern**.
+
+```JavaScript
+var Car = function(loc) {
+	var obj = {loc: loc};
+	obj.move = function() {
+		obj.loc++;
+	};
+	return obj;
+}
+
+var amy = Car(1);
+amy.move();
+var ben = Car(9);
+ben.move();
 ```
