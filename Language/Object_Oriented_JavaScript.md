@@ -352,4 +352,59 @@ Car.methods = {
 
 ## Prototypal Classes 
 
+Any object could delegate its failed property lookups to other object.
+
+To improve the performance, instead of coping everything in `Car.methods` property which use **Prototye Chain**.
+The common methods can be stored inside a share prototyle object.
+
+Object literal do not allow you to define its *prototype*, using `Object.create()` allow developer to set classes' prototype. The default storage for methods is called `.prototype` which is automatically created for every object.
+
+Every `property` object has a `.constructor` property which point back to the function which came attatch to.
+
+```JavaScript
+/*
+ * Version 1.0 (Complete Prototype Pattern)
+ */
+var Car = function(loc){
+	var obj = Object.create(Car.methods);
+	obj.loc = loc;
+	return obj;
+};
+
+Car.methods = {
+	move: function(){
+		this.loc++;
+	}
+};
+
+/*
+ * Version 2.0
+ */
+// Regular JavaScript Practice 
+var Car = function(loc){
+	var obj = Object.create(Car.prototype);
+	obj.loc = loc;
+	return obj;
+};
+
+// Storage place called 'prototype'
+// 'prototype' is created automatically
+Car.prototype.move = function(){
+	this.loc++;
+};
+console.log(Car.prototype.constructor); // -> Car
+console.log(amy.constructor); // -> Car
+console.log(amy isinstanceof Car) // -> true
+```
+
+NOTE: Using `prototype` as methods container object for every object is really confusing.
+
+Object one's prototype is object two -> failed property lookups on the first object should fall through to the second one.
+
+Amy is Car object failed lookups on the Car object should fall through Car.prototype Object.
+
+Car is function object failed to lookups on the function object should fall through function.prototype Object. The delegation using by Amy is created when Car function get called.
+
+## Pseudoclassical Patterns
+
 ...
