@@ -273,10 +273,10 @@ NOTE: `===` asks about object identity, NOT merely value equality.
 ## Functional Classes
 
 Class is a powerful form of functions that can be used to manufacture fleets of similar objects, a construct that is capable of building a fleet of similar objects that all conform to the same interface.
-
 Function produce objects called *Constructor functions*.
 
 NOTE: Name class with capitalised noun, like proper noun for a category. 
+
 Short story, the **class** is the **category** and the **constructor** is the function that produce a new instance of that class, the process is known as **Instantiating**.
 This is an example of the **Functional Class Pattern**.
 
@@ -294,3 +294,62 @@ amy.move();
 var ben = Car(9);
 ben.move();
 ```
+
+### Reducing Dupblicit
+
+Move the duplicit part from the class and use `this` to refer the calling object.
+
+```JavaScript
+/*
+ * Version 1.0
+ */
+var Car = function(loc) {
+	var obj = {loc: loc};
+	obj.move = move;               <--- 'move' here
+	return obj;
+}
+
+// Functional shared patterns with SHARED methods
+var move = function(){           <--- 'move' here
+	this.loc++;
+}
+
+// However, keep `move` to two place seems hard to maintain
+
+/*
+ * Version 2.0
+ */
+var Car = function(loc) {
+	var obj = {loc: loc};
+	extends(obj, methods);
+	// 'extends()' is NOT a native JavaScript function
+	// Google for external library that implement it
+	return obj;
+}
+
+// 'methods' current in the <global> scope
+// This should be avoid
+var methods = {
+	move: function(){
+		this.loc++;
+	},
+	on: function(){...},
+	off: function(){...}
+};
+
+/*
+ * Version 3.0
+ */
+
+// Functions are object and it can have its properties.
+// This move the methods out the <global> scope
+Car.methods = {
+	move: function(){
+		this.loc++;
+	};
+};
+```
+
+## Prototypal Classes 
+
+...
