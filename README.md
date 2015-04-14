@@ -4,19 +4,19 @@
 
 ### Version Control
 
-- [Git (Simplified Chinese)](Version_Control/Git.md)
+- ![](http://progressed.io/bar/100) [Git (Simplified Chinese)](Version_Control/Git.md)
 
 ### Editor
 
-- [Sublime Text 3](Editor/Sublime_Text_3.md)
+- ![](http://progressed.io/bar/75) [Sublime Text 3](Editor/Sublime_Text_3.md)
 
 ### Web Design
 
-- [Responsive Web Design](Web_Design/Responsive_Web.md)
-- [Responsive Images](Web_Design/Responsive_Images.md)
-- [GitHub Pages](Web_Design/GitHub_Page.md)
+- ![](http://progressed.io/bar/100) [Responsive Web Design](Web_Design/Responsive_Web.md)
+- ![](http://progressed.io/bar/25) [Responsive Images](Web_Design/Responsive_Images.md)
+- ![](http://progressed.io/bar/100) [GitHub Pages](Web_Design/GitHub_Page.md)
 
 ### Languages
 
-- [JavaScript - Basic](Language/JavaScript.md)
-- [JavaScript - Object-Oriented](Language/Object_Oriented_JavaScript.md)
+- ![](http://progressed.io/bar/100) [JavaScript - Basic](Language/JavaScript.md)
+- ![](http://progressed.io/bar/60) [JavaScript - Object-Oriented](Language/Object_Oriented_JavaScript.md)
