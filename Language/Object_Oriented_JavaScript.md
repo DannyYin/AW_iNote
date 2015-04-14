@@ -407,4 +407,41 @@ Car is function object failed to lookups on the function object should fall thro
 
 ## Pseudoclassical Patterns
 
-...
+Pseudo-classical version is a layer of syntactic convenience over top of the prototypal pattern. 
+The difference is the performance optimisation JavaScript engine implemented only apply when using the **pseudo-classical** patter.
+
+With keyword `new` infront of function invocation, the function turning into a *special* model, the **Constructor Mode**, so some of the work can be done automatically.
+
+```JavaScript
+// Prototypal Pattern BEFORE USING 'new'
+var Car = function(loc){
+	var obj = Object.create(Car.prototype); // Repeated Line
+	obj.loc = loc;                          // Repeated Line
+	return obj;                        
+}
+Car.prototype.move = function(){
+	this.loc++;
+};
+
+// When using 'new'
+var Car = function(loc){
+	this = Object.create(Car.prototype);    // With 'new' (hidden)
+	// Your code here...
+	this.loc = loc;                    
+	return this;                            // With 'new' (hidden)
+};
+Car.prototype.move = function(){
+	this.loc++;
+};
+
+/*
+ * Final Version HERE
+ */
+
+var Car = function(loc){
+	this.loc = loc;                    
+};
+Car.prototype.move = function(){
+	this.loc++;
+};
+```
