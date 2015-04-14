@@ -445,3 +445,32 @@ Car.prototype.move = function(){
 	this.loc++;
 };
 ```
+
+## Superclass and Subclasses
+
+Subclass use the output from the Superclass as their starting potin.
+
+```JavaScript
+// Version 1.0 using Functional Class Pattern
+var Car = function(loc){
+	var obj = {loc: loc};
+	obj.move = function(){
+		obj.loc++;
+	};
+	return obj;
+};
+
+var Van = function(loc){
+	var obj = Car(loc);
+	obj.grab = function(){...};
+	return obj;
+};
+
+var Cop = function(){
+	var obj = Car(loc);
+	obj.call = function(){...};
+	return obj;
+};
+
+// Version 2.0
+```
