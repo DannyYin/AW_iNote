@@ -19,4 +19,4 @@
 ### Languages
 
 - ![](http://progressed.io/bar/100) [JavaScript - Basic](Language/JavaScript.md)
-- ![](http://progressed.io/bar/60) [JavaScript - Object-Oriented](Language/Object_Oriented_JavaScript.md)
+- ![](http://progressed.io/bar/80) [JavaScript - Object-Oriented](Language/Object_Oriented_JavaScript.md)
