@@ -474,3 +474,42 @@ var Cop = function(){
 
 // Version 2.0
 ```
+
+## Pseudoclassical JavaScript
+
+Introducing `Object.create()` method and `Car.call()` mehtod.
+
+NOTE: For prototype chainning, `Van.prototype = new Car()` is a misusage.
+
+```JavaScript
+var zed = new Car(3);
+zed.move();
+
+var amy = new Van(9);
+amy.move();
+amy.grab();
+
+// Superclass
+var Car = function(loc){
+	this.loc = loc;
+};
+Car.prototype.move = function(){
+	this.loc++;
+};
+
+// Subclass
+var Van = function(loc){
+	// this.loc = loc;     <-- WRONG
+	// new Car(loc);       <-- WRONG
+	// this = new Car(loc) <-- WRONG (NOT ALLOW Using Code)
+	// Car(loc);           <-- WRONG
+	Car.call(this, loc); //<-- RIGHT
+}
+
+// Currently 'Ven.prototype' delegate 'Object.prototype'
+Van.prototype = Car.prototype                 // <-- WRONG
+Van.prototype = Object.create(Car);           // <-- WRONG
+Van.prototype = Object.create(Car.prototype); // <-- RIGHT
+Van.prototype.constructor = Van               // <-- Link to object
+Van.prototype.grab = function(){...}
+```
