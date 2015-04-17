@@ -152,4 +152,86 @@ ctx.strokeText("CANVAS MEMES!!!", c.width/2, 50);
 
 ## From Pixels to Animation
 
-...
+### What's a Pixel
+
+Red, Green, Blue, Alpha (Solid or Transparent).
+
+### Filters and Effects
+
+The grayscale and invert color effects can be created using **Canvas** code.
+
+### Canvas 2D Image Data
+
+Images data contains width, height, data (Uint8ClampedArray).
+
+`createImageData` initialise blank image data.
+
+`getImageData` retrive data to the canvas
+
+`putImageData` store data to the canvas
+
+**Data Sample**
+
+```JavaScript
+[[r, g, b,a], [r, g, b, a]...[r, g, b, a]]
+[r, g, b, a, r, g, b, a, r, g, b, a, r, g, b, a]
+```
+
+```JavaScript
+var c = document.querySelector('#c');
+var ctx = c.getContext('2d');
+var data = ctx.getImageData(0, 0, 500, 500);
+
+function paintGreen(imageData){
+  var numPixels = imageData.data.length / 4;
+  for (var i = 0; i < numPixels; i++) {
+    if (i % 10 === 0) {
+      imageData.data[i * 4 + 1] = 255;
+      imageData.data[i * 4 + 3] = 255;
+    }
+  }
+  ctx.putImageData(imageData, 0, 0);
+}
+
+paintGreen(data);
+```
+
+### Playing Videos with Canvas
+
+Play a video using `requestAnimationFrame` is just one of the many interactive things.
+
+Processing keyboard input, can use open source projects libray like [Kibo](https://github.com/marquete/kibo). Kibo allows reference keys by their common names instead of keycodes.
+
+Processing mouse input, the mouse can accept `click` and `mousedown` events.
+However, we have to do a little work to figure out where exactly in the canvas the user has clicked. Mouse click events return `clientX` and `clientY` positions that are global to the browser window.
+Every element knows where it is positioned relative to the browsers (0, 0) position (`offsetLeft` and `offsetTop`).
+
+NOTE: To get the canvas-relative of click, you need to subtract the `offsetLeft` and `offsetTop` values from `clientX` and `clientY`.
+
+```JavaScript
+// example code from mr doob : http://mrdoob.com/lab/javascript/requestanimationframe/
+var canvas, context;
+init();
+animate();
+function init() {
+    canvas = getCanvas();
+    context = canvas.getContext( '2d' );
+}
+function animate() {
+    requestAnimationFrame( animate );
+    draw();
+}
+function draw() {
+    var time = new Date().getTime() * 0.002;
+    var x = Math.sin( time ) * 96 + 38;
+    var y = Math.cos( time * 0.9 ) * 96 + 38;
+
+    context.fillStyle = 'rgb(245,245,245)';
+    context.fillRect( 0, 0, 255, 255 );
+    context.fillStyle = 'rgb(255,0,0)';
+    context.beginPath();
+    context.arc( x, y, 10, 0, Math.PI * 2, true );
+    context.closePath();
+    context.fill();
+}
+```
