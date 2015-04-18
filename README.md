@@ -16,6 +16,7 @@
 - ![](http://progressed.io/bar/25) [Responsive Images](Web_Design/Responsive_Images.md)
 - ![](http://progressed.io/bar/100) [GitHub Pages](Web_Design/GitHub_Page.md)
 - ![](http://progressed.io/bar/100) [HTML5 Canvas](Web_Design/HTML5_Canvas.md)
+- ![](http://progressed.io/bar/1) [Website Performance Optimization](Web_Design/Website_Performance_Optimization.md)
 
 ### Languages
 
