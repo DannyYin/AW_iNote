@@ -1,6 +1,6 @@
 # Git-Tutorial
 
-Git 为分布式版本控制系统（类似的有 Mercurial 和 
+Git 为分布式版本控制系统（类似的有 Mercurial 和
 Bazaar），它用于纪录文件修改详情。其他版本控制系统有 CVS（Concurrent Versions
 System）和 SVN （Apache Subversion） 均为集中式版本控制系统。集中式版本控制系
 统将版本库存放于中央服务器，需要联网且每次修改与提交均需要与服务器交换信息效率很低
@@ -10,13 +10,12 @@ System）和 SVN （Apache Subversion） 均为集中式版本控制系统。集
 **创建版本库**
 
 `$ git init` 将当前目录建为管理仓库。`.git` 文件来跟踪版本库。版本控制只可跟踪文
-本文件的改动，但无法追踪二进制变化（可知文件大小改变）。不同语言尽量使用统一编码 
-UTF-8 来支持全平台。
+本文件的改动，但无法追踪二进制变化（可知文件大小改变）。不同语言尽量使用统一编码 UTF-8 来支持全平台。
 
 **文件入仓**
 
-首先将文件添加至仓库 `$ git add filename.txt` 然后将文件提交 `$ git commit -m "message"` 
-（`-m` 为本次提交说明）。`commit` 可一次提交多个文件，所以可多次 `add` 
+首先将文件添加至仓库 `$ git add filename.txt` 然后将文件提交 `$ git commit -m "message"`
+（`-m` 为本次提交说明）。`commit` 可一次提交多个文件，所以可多次 `add`
 不同文件，例如下面的例子。
 
 ```
@@ -28,15 +27,15 @@ $ git commit -m "add 3 files"
 
 **修改文本**
 
-`git status` 输出仓库当前状态。`git diff` 
-显示修改内容。针对文件的修改纪录查询使用 `git diff fileName.extension` 
+`git status` 输出仓库当前状态。`git diff`
+显示修改内容。针对文件的修改纪录查询使用 `git diff fileName.extension`
 ，其显示格式为 Unix 通用 diff 格式。
 
 **版本回退**
 
 每一个 commit 等同于一个快照。
 
-`git log` 查看历史纪录，其可用 `--pretty=oneline` 
+`git log` 查看历史纪录，其可用 `--pretty=oneline`
 修改显示方式。16进制数组为版本号（Commit ID）和 SVN 不同，Git 版本号为 SHA1
 计算所得（用自动递加会造成版本号冲突）。
 
@@ -59,7 +58,7 @@ Git 内部使用 `HEAD` 指针来选当前版本。且 Git 提供 `$ git reflog`
 
 **工作区和暂存区**
 
-工作区（Working Directory），版本库（Repository）中有暂存区（stage 或 
+工作区（Working Directory），版本库（Repository）中有暂存区（stage 或
 index）还有一个默认唯一的分支 master 以及指向它的指针 HEAD。将文件添加到版本库里
 分两步执行，第一步，将文件添加至暂存区，第二步，将暂存区文件提交至当前分支。既每次的
 修改不添加暂存区将不会被添加至版本库。
@@ -72,7 +71,7 @@ Git 跟踪并管理*修改*，并非文件。
 
 `$ git checkout -- readme.md` 撤销全部 `readme.md` 在工作区的修改。这又分两
 种情况，第一种，文件并未存放至暂存区，撤销即返回和版本库相同状态。第二种，撤销返回至
-添加到暂存区时的状态。`--` 
+添加到暂存区时的状态。`--`
 在此处极为重要，它在此区分撤销与创建新分支。用下面的代码将暂存区的文件回归至工作区：
 
 ```
@@ -86,9 +85,9 @@ $ git checkout -- readme.md
 
 **删除文件**
 
-Git 中删除也属于修改操作。删除后的两种情况，第一种为确认删除用 
+Git 中删除也属于修改操作。删除后的两种情况，第一种为确认删除用
 `$ git rm test.txt`
-将文件从工作区删除并将删除动作添加至暂存区。第二种为误删，可用 
+将文件从工作区删除并将删除动作添加至暂存区。第二种为误删，可用
 `$ git checkout -- test.txt` 恢复删除文件。
 
 **远程仓库**
@@ -102,7 +101,7 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 
 在文件夹内，`id_rsa` 为私钥（Private Key），`id_rsa.pub` 为公钥
 （Public Key）。第二步，在 GitHub 添加 SSH Key，只需将公钥中内容粘贴至 Key
-文本框即可。需要添加 SSH Key 
+文本框即可。需要添加 SSH Key
 的原因是确认身份，如有若干电脑仅需把每台设备的公钥添加即可。
 
 **添加远程库**
@@ -122,7 +121,7 @@ master。在此之后的远程提交均可用 `$ git push origin master` 来完�
 
 **克隆远程库**
 
-`git clone` 
+`git clone`
 在当前位置克隆一个本地库。当多人协作开发时，只需各自从远程服务器克隆即可。Git
 支持多种协议，默认为 `git://`（速度最快）使用 SSH，但也可使用
 https（速度慢且每次需要输入口令，适用于仅开放 https 端口的情况） 等其他协议。
@@ -131,7 +130,7 @@ https（速度慢且每次需要输入口令，适用于仅开放 https 端口�
 
 在 Git 中分支的创建、切换以及删除都可以快速完成（无文件数量无关，仅为指针改变）。每
 一次提交 Git 都会将其串联成时间线，主线称之为*主分支*即 master 分支而 HEAD
-指向的为当前分支。使用 `$ git checkout -b branchname` 创建新分支，`-b` 
+指向的为当前分支。使用 `$ git checkout -b branchname` 创建新分支，`-b`
 表示创建并切换，等同于下面的代码：
 
 ```
@@ -142,17 +141,17 @@ $ git checkout dev
 ```
 
 `git branch` 用于查看当前分支，当前分支用 `*`
-表示。创建分支后即可在其中进行操作。操作完成后即可切换分支 
+表示。创建分支后即可在其中进行操作。操作完成后即可切换分支
 `$ git checkout master`, `$ git merge dev` 合并指定分支与当前分支(Fast-
-forward，直接把 master 指向 dev 分支)。合并后即可删除不必要分支 
-`$ git branch -d dev`，因为分支操作非常便捷与迅速，所以 Git 
-鼓励使用分支进行任务并在完成后合并删除分支。其效果与 master 
+forward，直接把 master 指向 dev 分支)。合并后即可删除不必要分支
+`$ git branch -d dev`，因为分支操作非常便捷与迅速，所以 Git
+鼓励使用分支进行任务并在完成后合并删除分支。其效果与 master
 分支上工作相同但过程更安全。
 
 **解决冲突**
 
-发生冲突后需手动解决再提交，`git status` 可以显示冲突文件。Git 用 
-`<<<<<<<`，`=======`，`>>>>>>>` 标记不同分支。使用带参数的 `git log` 
+发生冲突后需手动解决再提交，`git status` 可以显示冲突文件。Git 用
+`<<<<<<<`，`=======`，`>>>>>>>` 标记不同分支。使用带参数的 `git log`
 也可查看分支合并情况：
 
 ```
@@ -171,12 +170,12 @@ $ git merge --no-ff -m "merge with no-ff" dev
 # no-ff 为禁用 Fast-forward
 ```
 
-分支策略在开发时的几项原则，首先 master 
+分支策略在开发时的几项原则，首先 master
 分支最为稳定仅用于发布新版本，其次开发工作全部都应该在 dev 的分支上进行。
 
 **Bug分支**
 
-因为 Git 中分支的强大，修复 Bug 
+因为 Git 中分支的强大，修复 Bug
 也可使用新建临时分支的方法，修复后在合并并删除临时分支。 Git 提供 `stash`
 来存储当前工作现场。
 
@@ -220,22 +219,22 @@ master 为主分支需时刻于远程同步，dev 为团队工作分支也学时
 $ git checkout -b dev origin/dev
 ```
 
-使用 `git pull` 抓取最新版本，解决冲突本地合并后再次推送。多人协作流程为，首先 
-`git push origin branch-name` 推送修改，若失败则表示远程分支比本地更新需 
+使用 `git pull` 抓取最新版本，解决冲突本地合并后再次推送。多人协作流程为，首先
+`git push origin branch-name` 推送修改，若失败则表示远程分支比本地更新需
 `git pull` 合并。如有冲突，解决冲突后本地提交再推送，如显示 "no tracking
-information" 则表示本地分支与远程分支未创建链接关系，使用 
+information" 则表示本地分支与远程分支未创建链接关系，使用
 `git branch --set-upstream branch-name origin/branch-name` 来创建。
 
 **标签管理**
 
 标签为版本库快照，它为指向某个 commit 的指针（分支可移动，标签不可）。
 
-创建标签可用 `git tag v1.0` 创建有说明的标签可用 
+创建标签可用 `git tag v1.0` 创建有说明的标签可用
 `git tag -a v0.1 -m "version 1.0 release"`，查看可以 `git tag`
 其顺序为字母顺序排列。为特点体检打标签可用 `git tag v1.1 6224937` 后跟
 commit id 即可。查看标签信息可用 `git show v1.0` 可用查看文字说明。
 
-删除标签可用 `git tag -d v0.1`。推送标签至远程 `git push origin v0.1` 或 
+删除标签可用 `git tag -d v0.1`。推送标签至远程 `git push origin v0.1` 或
 `git push origin --tags` 推送全部本地标签。删除远程标签用如下代码：
 
 ```
