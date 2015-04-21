@@ -8,10 +8,6 @@ Sublime Text supports addons/plugins/extensions called *packages* that extend th
 
 Beside installing packages using [**Package Control**](https://packagecontrol.io/) created by *Will Bond**. User can add repository using **Command Palette**, Sublime will attempt to install the package for you.
 
-<kbd>Command</kbd> + <kbd>=</kbd> : increase font size
-
-<kbd>Command</kbd> + <kbd>-</kbd> : decrease font size
-
 ## Command Palette
 
 > It's always faster and more savvy to use keyboard shortchuts or the commands menu.
@@ -224,7 +220,344 @@ Remapped key combos to past and indent by default using code below
 
 ### Fonts and Type Sizing
 
-Pg. 35...
+Changing font use code below.
+
+```
+"font_face": "inconsolate"
+```
+
+#### Tweaking Fonts
+
+Changing font size.
+
+```
+"font_size": 16.0
+```
+
+<kbd>Command</kbd> + <kbd>=</kbd> : increase font size
+
+<kbd>Command</kbd> + <kbd>-</kbd> : decrease font size
+
+### Sidebar
+
+Sidebar default is closed.
+
+<kbd>Command</kbd> + <kbd>K</kbd> and <kbd>Command</kbd> + <kbd>B</kbd>
+
+### Minimap
+
+```
+// Draw minimap border
+"draw_minimap_border": true,
+// Always show minimap viewport
+"always_show_minimap_viewport": true
+```
+
+## Code Completions and Intelligence
+
+While you writing code, editor should suggest possible endings to help speeding up development process.
+
+### Code Hinting/Auto Complete
+
+Auto complete is enabled by default. Possible snippets will also suggest possible snippets.
+
+Manually trigger auto complete using
+
+<kbd>Ctrl</kbd> + <kbd>Space</kbd>
+
+#### Where Auto Complete Fails
+
+Auto complete does not smart enough which also become much worth when code snippets comes in.
+
+#### Settings
+
+```
+// Enable auto complete to be triggered automatically when typing.
+"auto_complete": true,
+
+// The maximum file size where auto complete will be automatically triggered.
+"auto_complete_size_limit": 4194304,
+
+// The delay, in ms, before the auto complete window is shown after typing
+"auto_complete_delay": 50,
+
+// Controls what scopes auto complete will be triggered in
+"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin",
+
+// Additional situations to trigger auto complete
+"auto_complete_triggers": [ {"selector": "text.html", "characters": "<"} ],
+
+// By default, auto complete will commit the current completion on enter.
+// This setting can be used to make it complete on tab instead.
+// Completing on tab is generally a superior option, as it removes
+// ambiguity between committing the completion and inserting a newline.
+"auto_complete_commit_on_tab": false,
+```
+
+#### SublimeCodeIntel
+
+**SublimeCodeIntel is a package that provides smart completions. It scans projects and provide smart auto completions to the code as it knows the sturcture of application.
+
+#### Installing on Sublime Text 3
+
+1. Use the development branch (Pull from GitHub and put into Package folder)
+1. Clear CodeIntel cache
+1. Fix the langauge-specific cofig
+
+#### Be patient
+
+Status bar shows the CodeIntel scanning process.
+
+## Terminal and Command Line Integration
+
+### OS X
+
+Link up `sublime` command.
+
+```
+// Sublime Text 2
+sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/sublime
+
+// Sublime Text 3
+sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/sublime
+```
+### Linux
+
+```
+// Sublime Text 2
+alias subl='/usr/bin/sublime-text-2'
+
+// Sublime Text 3
+alias subl='/usr/bin/sublime-text'
+```
+
+### Windows
+
+Are you kidding me?
+
+### Using Sublime From the Command Line
+
+```
+// Open any directory
+sublime ~/path/to/folder
+
+// Open the current directory
+sublime .
+
+// Open a file
+sublime index.html
+
+// Specific line of file
+sublime index.html:66
+
+// Specific column (Tracking specific bug)
+sublime index.js:66:20
+```
+
+#### Arguments
+
+**Argument**: `-(std in)`
+
+If you run scripts from the terminal and want to pipe the output into Sublime.
+
+Press <kbd>Ctrl</kbd> + <kbd>D</kbd> to single completion, it pipes the info into temporary .txt file.
+
+**Argument**: `--project <project>:`
+
+Load the given project.
+
+**Argument**: `--command <command>:`
+
+Run the given command
+
+**Argument**: `-n` or `--new-window`
+
+Open a fresh window.
+
+**Argument**: `-a` or `--add`
+
+Add the curernt file or folder to the active/last used Sublime window. Use along with  `touch`.
+
+```
+touch fileName.js
+sublime -a fileName.js
+```
+
+**Argument**: `-w` or `--wait`
+
+Writing to a file and don't want to open a semi-finished file.
+
+**Argument**: `-b` or `--background`
+
+Don't bring Sublime into focus. (When you are opening serveral files one after another)
+
+**Argument**: `-s` or `--stay`
+
+Keep the application avtivated after closing the file.
+
+**Argument**: `-h` or `--help`
+
+Show the help info.
+
+**Argument**: `-v` or `--version`
+
+Show version and exit.
+
+### Terminal Package
+
+You can go from Sublime to the terminal in one step with using [Sublime Terminal](http://wbond.net/sublime_packages/terminal).
+
+Press <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>t</kbd> to open the current file's parent directory.
+
+Press <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>t</kbd> to open the current project directory in terminal.
+
+## Maximising Screen Real Estate with Multiple Panes and Origami
+
+Multiple panes are helpful when working with styles and templating at the same time. In Sublime you can have up to four(4) columns, up to three(3) rows, or 2x2 grid of panes open at once.
+
+`View` -> `Layout`
+
+**Keyboard Shortcuts Setting Layout**
+
+<kbd>Command</kbd> + <kbd>Option</kbd> + <kbd>[1 - 4]</kbd>
+
+Split into 1 - 4 columns accordingly.
+
+<kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>5</kbd>
+
+Split window into 4x4 grid.
+
+<kbd>Command</kbd> + <kbd>Option</kbd> +  <kbd>Shift</kbd> + <kbd>[2 - 3]</kbd>
+
+Split into 2 - 3 rows accordingly.
+
+#### Panes Exercise
+
+Shift focus to the first tab with <kbd>Command</kbd> + <kbd>1</kbd>
+
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>2</kbd> move the current file to the second pane.
+
+Create file in second pane:
+
+1. Shift focus to second pane <kbd>Ctrl</kbd> + <kbd>1</kbd>
+1. Create new tab <kbd>Command</kbd> + <kbd>N</kbd>
+
+#### Origami
+
+...
+
+#### Create
+
+...
+
+
+#### Destory
+
+....
+
+#### Focus
+
+....
+
+#### Focus
+
+...
+
+#### Move
+
+...
+
+#### Focus
+
+....
+
+#### Resize
+
+....
+
+### Moving Between Tabs
+
+...
+
+## Working with Multiple Carets and Section
+
+...
+
+### Replacing Words
+
+...
+
+#### Quick Find Next/Quick Skip Next
+
+...
+
+### Modifiny Multiple Lines at Once
+
+...
+
+### Another Multi-caret Example
+
+...
+
+## Theme and Color Schemes
+
+...
+
+### Color Schemes
+
+...
+
+#### Color Scheme Selector Package
+
+...
+
+### Themes
+
+...
+
+### Finding Themes
+
+...
+
+#### Handy Tools
+
+...
+
+## Snippets
+
+...
+
+### Creating Snippets
+
+...
+
+#### Content
+
+...
+
+#### Tab Trigger
+
+...
+
+#### Snippet Scope
+
+...
+
+#### Description
+
+...
+
+#### Saving
+
+...
+
+### Finding Snippets
+
+...
+
+## Efficient Searching, Finding and Replacing
+
+...
 
 ***
 
@@ -232,17 +565,24 @@ Pg. 35...
 
 Suggestions
 
-1. pg. 20 command palette short-cut is Super + Shift + P, NOT Super + P that's Goto Anything.
-
-2. Images about using `@` in pg. 21 is confusing. You should put them after Code & Text Blocks.
-
-3. pg.25, Subtitle 3.2 Changing Syntax and the Subsubtitle content does not closely releated. It's probably good to merge 3.2 with 3.1.
+1. Promotion info. declares this book has 220 pages and it actually has 202 pages.
+1. pg.20 command palette short-cut is Super + Shift + P, NOT Super + P that's Goto Anything.
+1. Images about using `@` in pg. 21 is confusing. You should consider putting them after Code & Text Blocks.
+1. pg.25, Subtitle 3.2 Changing Syntax and the Subsubtitle content does not closely releated. It's probably good to merge 3.2 with 3.1.
+1. pg.45, Title and Subtitle numbering is inconsistency comparing above chapters. Level 3 subtitle was introduing in section 5, like 5.3.2. Level 3 subtitle is never used before.
+1. pg.48 'OSX' should be 'OS X'.
+1. Page. 55 Windows and Linux split window keyboard duplicates TWO Shift Key there.
 
 Questions
 
-1. In pg. 20, how to go to next match when using `#` fuzzy search. about. It is not mentioned in the book.
-
-2. pg. 32, how to create symbolic link?
+1. In pg. 20, how to go to next match when using `#` fuzzy search. about? It is not mentioned in the book. Add 'details later' if this book talks about this.
+1. pg. 32, how to create symbolic link? For Dropbox syncing.
+1. pg. 51 `--project <project>:` and `--command <command>:` lack of explanation?
+1. pg. 52 `-w` lack of example?
+1. pg. 52 difference between `-b` and `-s`?
+1. pg. 53 How to define a project (is a project a folder with `.git`)?
+1. pg. 53 Where is the context menu? Is it available for Mac OS?
+1. pg. 54 Command + 1 only focus tab when the split panes has focus. "Now split the current window into two with the keyboard shortcut ⌘ + Option + 2 and focus the first tab with ⌘ + 1" is confusing. The focus shift to the newly splited pane instead of original single pane, why?
 
 ***
 
