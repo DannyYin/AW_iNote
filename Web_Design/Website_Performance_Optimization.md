@@ -25,9 +25,9 @@ NOTE+: Chrome Canary is the developer version of Chrome. It includes new and exp
 
 ![CRP Process](http://dl.dropbox.com/u/1725146/Screen%20Shot%202015-04-19%20at%209.56.54%20AM.png)
 
-Before the brower can render the page, it needs to construct the **DOM** and **CSSOM** tree.
+Before the browser can render the page, it needs to construct the **DOM** and **CSSOM** tree.
 Therefore, fast delivery of HTML and CSS is important.
-The goal is to prioritize and display the content that relates to the primary action the user wnats to take on a page.
+The goal is to prioritize and display the content that relates to the primary action the user wants to take on a page.
 
 Optimizing for performance is all about understanding what happens in intermediate steps between receiving the *HTML*, *CSS* and *JavaScript* bytes and the required processing to turn them into redered pixels.
 
@@ -35,14 +35,14 @@ Optimizing for performance is all about understanding what happens in intermedia
 
 **Bytes** -> **characters** -> **tokens** -> **nodes** -> **object model**
 
-HTML markup is transformed into **DOM** (Document Object Model) and CSS markup is transferd into **CSSOM** (CSS Object Model).
+HTML markup is transformed into **DOM** (Document Object Model) and CSS markup is transfers into **CSSOM** (CSS Object Model).
 They are two independent things.
 
-NOTE: *Chrome DevTools Timeline* can capture and inspect the construction and processing costs of **DOM** and **CSSOM**.
+NOTE: *Chrome DevTools Time-line* can capture and inspect the construction and processing costs of **DOM** and **CSSOM**.
 
-### Critical Rendering Path Walkthrough
+### Critical Rendering Path Walk-through
 
-Browser construct the **DOM** incrementally, and develper can take the advantage of it to speed up the rendering process.
+Browser construct the **DOM** incrementally, and developer can take the advantage of it to speed up the rendering process.
 
 #### DOM First
 
@@ -78,7 +78,7 @@ NOTE: Browser DOES provide a default set of styles, known as "user agent styles"
 NOTE: `curl` is a tool to transfer data from or to a server, using one of the supported protocols (DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS,  TEL-NET and TFTP).
 The command is designed to work without user interaction.
 
-### What's the Document Object Model?
+#### What's the Document Object Model?
 
 [Original Post](http://www.w3.org/TR/DOM-Level-2-Core/introduction.html)
 
@@ -113,10 +113,10 @@ It is based on an object structure that resembles the structure of the documents
 Each document contains zero or one 'doctype' node(s), one root element node, and zero or more comments or processing instructions.
 The root element serves as the root of the element tree for the document.
 
-The **DOM** is a logical model that may be inmplemented in any convenient manner. One important property of **DOM** strucutre models is structural isomorphism:
-*if any two DOM impelementations are used to create a representation of the same document, they will create the same strcture model, in accordance with the XML informatino Set*.
+The **DOM** is a logical model that may be implemented in any convenient manner. One important property of **DOM** structure models is structural isomorphism:
+*if any two DOM implementations are used to create a representation of the same document, they will create the same stricture model, in accordance with the XML information Set*.
 
-NOTE: **DOM** was chosen beacuase it's an "Object Model" in the traditional object oriented design sense.
+NOTE: **DOM** was chosen because it's an "Object Model" in the traditional object oriented design sense.
 Documents are modeled using objects, and the model encompassed not only the strcture of a document, but also the behavior of a document and the objects of which it is composed.
 For example, the `node`s in the diagram do not represent a data structure, they represent objects, which have functions and identity.
 
@@ -126,7 +126,7 @@ As an object model, the **DOM** identifies:
 - The semantics of thses interfacs and objects, including both behavior and attribute.
 - The relationship and collaorations among these interfaces and objects.
 
-### What the DOM is NOT
+#### What the DOM is NOT
 
 The following text provide a more precise understsanding of the **DOM** by distinguishing it from other systems that may seem to be like it.
 
@@ -134,6 +134,58 @@ The following text provide a more precise understsanding of the **DOM** by disti
 - **DOM** is not a way of persisting objects to XML or HTML. (It specifies how object may be represented in document. It specifies how XML and HTML documents are represented as objects so that they may be used in object oriented programs)
 - **DOM** is not a set of data strcture. (It's an object model that specifies interfaces)
 - **DOM** does not define what information in a document is relevant or how information in a document is structured. (It is an API to the information set)
+
+### Fast Google Search Response
+
+![Google Response Process](http://dl.dropbox.com/u/1725146/Screen%20Shot%202015-04-21%20at%208.46.49%20PM.png)
+
+Many sites use a static header and then use JavaScript to fill in the custom bits, which allow them to serve the same header regardless the user status.
+
+Important part is that the server does not have to wait to render the full response before returning it to the client. The sooner server can flush some data, the sooner the browser can start building the DOM, and discover the dispatch requests for other critical resources.
+
+### Exploring Time-line Traces
+
+PROTIO: In order to user the hard reload trick to capture the full trace, you have to load the page first, open Time-line in DevTools, start and stop recording, and then use the shortcuts to reload the page.
+
+### Converting CSS to the CSSOM
+
+CSS cannot be use partially and the child element will inherent the parent and hence cannot be use partially during page rendering process.
+
+### Which Style Render Faster
+
+The more specific the CSS rule is the more expensive it is during rendering process.
+
+NOTE: Measure first and optimize second.
+
+### Recalculating CSS Styles in DevTools
+
+NOTE: Right click the time-line in order to save to load trace.
+
+In **Recalculate Style** event browser convert CSS style in to CSSOM.
+
+### The Render Tree
+
+The render tree only capture the visible contents. The children nodes will be ignored if their parents is not visible.
+
+### Layout
+
+Calculating positions and dimensions. The percentage in CSS is percentage to the width set in the `<meta>` tag.
+
+```
+<meta name="viewport" content="width=device-width">
+```
+
+The width is always relative to its parent.
+
+NOTE: If there is NO viewport meta provided, the browser will use the default viewport width which is *980px* for large screen optimization.
+
+ALWAYS SET VIEWPORT!
+
+NOTE: <em> and <span> are inline elements. Unless they are converted to display: block or display: inline-block, their widths will be determined by the text they contain.
+
+### Analyzing Layout in DevTools
+
+Layout can be triggered by device orientation change on mobile, a window resize, or any other action that modifies the content of the DOM - e.g. adding or removing content from the DOM tree, toggling CSSOM properties on a node, and so on!
 
 ## Optimizing the CRP
 
