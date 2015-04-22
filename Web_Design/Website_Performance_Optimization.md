@@ -189,5 +189,56 @@ Layout can be triggered by device orientation change on mobile, a window resize,
 
 ## Optimizing the CRP
 
-...
+In order to optimizing DOM:
 
+1. Minify
+1. Compress
+1. Cache
+
+NOTE: Once the CSSOM has been build the page can be rendered.
+
+Render Tree = DOM Tree + CSSOM Tree
+
+### Using Blocking CSS with Media Queries
+
+Split the CSS for multiple-files if using Media Queries for different screen size and screens.
+
+```
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style-print.css" media="print">
+<link rel="stylesheet" href="style-phone.css" media="screen">
+```
+
+NOTE: CSS files block rendering the current needed styles only.
+
+### Optimizing JavaScript
+
+Remove additional requests can help to optimize the performance. (In-line scripts can help a little bit but there is a trade off between performance and re-usability)
+
+```
+<script src="foo.js" async></script>
+```
+
+`async` attribute will NOTE (1) block the DOM construction, (2) block the CSSOM.
+
+NOTE: In-line script will always block the DOM construction.
+
+Below for examples of blocking, inline and async scripts.
+
+Blocking: `<script src="anExteralScript.js"></script>`
+Inline: `<script>document.write("this is an inline script")</script>`
+Async: `<script async src="anExternalScript.js"></script>`
+
+### General Strategies and CRP Diagrams
+
+1. Minify, Compress, Cache
+1. Minimize use of render block resources (CSS)
+  1. Use media query on `<link>` to unblock rendering
+  1. In-line CSS
+1. Minimize use of parser blocking resources
+  1. Defer JavaScript execution
+  1. Use `<async>` attribute on `<script>`
+
+The **general patterns** are (1) Minimize Bytes (2) Reduce critical resources (3) Shorten CRP Length.
+
+Note: Knowing the critical path length allows us to get a quick approximation of the best case scenario for time to first render! Best of all, we can get this estimate by quickly inspecting the HTML markup.
