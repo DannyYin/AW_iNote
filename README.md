@@ -19,6 +19,7 @@
 - ![](http://progressed.io/bar/100) [Website Performance Optimization](Web_Design/Website_Performance_Optimization.md)
 - ![](http://progressed.io/bar/66) [Chrome DevTool](Web_Design/Chrome_DevTool.md)
 - ![](http://progressed.io/bar/30) [D3.js](Web_Design/D3_JS.md)
+- ![](http://progressed.io/bar/10) [Browser Rendering Optimization](Web_Design/BrowserRenderingOptimization.md)
 
 ### Languages
 
